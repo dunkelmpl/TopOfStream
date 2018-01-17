@@ -42,10 +42,6 @@ public:
         TPair newItem = make_pair(key, value);
 
         if (storage.size() >= limit) {
-            // As soon as we reached limit, we organize storage as min heap 
-            if (storage.size() == limit) {
-                make_heap(storage.begin(), storage.end(), Comparator());
-            }
 
             // If lowest element in storage is smaller than new key,
             // then we need to remove it (first/lowest element) and insert new
@@ -65,6 +61,11 @@ public:
         } else {
             // Unless we reached limit, we just add item to the storage.
             storage.push_back(newItem);
+
+            // As soon as we reached limit, we organize storage as min heap 
+            if (storage.size() == limit) {
+                make_heap(storage.begin(), storage.end(), Comparator());
+            }
         }
     }
 
